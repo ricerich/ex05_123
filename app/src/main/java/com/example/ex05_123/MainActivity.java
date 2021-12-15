@@ -6,7 +6,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -36,6 +38,11 @@ public class MainActivity extends AppCompatActivity {
         //1-4.레이아웃 객체를 view에 꽂는다.만들기옵션과 함께
         setContentView(baseLayout, params);
 
+        //추가: 에딧텍스트 추가
+        EditText edt1 = new EditText(this);
+        edt1.setHint("입력바람!");
+        baseLayout.addView(edt1);
+
 
         //2.뷰를 만든다(예:버튼)
         //2-1.뷰 객체를 생성한다.(예:버튼)
@@ -53,14 +60,22 @@ public class MainActivity extends AppCompatActivity {
         //2-3.중요: 뷰객체를 레이아웃에 꽂는다.추가한다
         baseLayout.addView(btn1);
 
+        //추가: 텍스트뷰
+        TextView tv1 = new TextView(this);
+        tv1.setText("결과출력");
+        tv1.setTextColor(Color.MAGENTA);
+        tv1.setTextSize(30);
+        baseLayout.addView(tv1);
+
         //2-4.뷰객체의 이벤트처리 (예: 온클릭리스너)
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"클릭했음!!!",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),"클릭했음!!!",Toast.LENGTH_SHORT).show();
+
+                tv1.setText(edt1.getText().toString());
             }
         });
-
 
     }
 }
